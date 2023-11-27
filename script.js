@@ -9,8 +9,30 @@ const funFacts = [
     "The Eiffel Tower can be 15 cm taller during the summer due to thermal expansion of the iron.",
 ];
 
-// Function to display a random fun fact
+let factCounter = 0;
+
+// Function to display a random fun fact with animation
 function getRandomFact() {
+    const funFactElement = document.getElementById('funFact');
     const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
-    document.getElementById('funFact').innerText = randomFact;
+
+    // Add a fade-out animation
+    funFactElement.style.opacity = 0;
+    setTimeout(() => {
+        funFactElement.innerText = randomFact;
+        // Add a fade-in animation
+        funFactElement.style.opacity = 1;
+    }, 500);
+
+    // Increment the counter
+    factCounter++;
+
+    // Update the counter display
+    document.getElementById('factCounter').innerText = `Fun Facts Displayed: ${factCounter}`;
+}
+
+// Function to reset the fun fact counter
+function resetCounter() {
+    factCounter = 0;
+    document.getElementById('factCounter').innerText = `Fun Facts Displayed: ${factCounter}`;
 }
